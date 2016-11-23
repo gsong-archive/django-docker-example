@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  # Primary services
+  web:
+    depends_on:
+      - db
+
+  # Upstream services
+  db:
+    image: mysql:5
+    env_file:
+      - ./db.env
