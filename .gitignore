@@ -1,2 +1,4 @@
 .data
 db.env
+local.in
+local.txt

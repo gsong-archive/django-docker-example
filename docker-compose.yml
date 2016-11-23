@@ -7,7 +7,10 @@ services:
       - db
 
   # Upstream services
+  cache:
+    image: memcached:1.4-alpine
+
   db:
-    image: mysql:5
+    image: mysql:5.7
     env_file:
       - ./db.env
