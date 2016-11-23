@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'myproject',
 ]
 
 MIDDLEWARE = [
@@ -80,6 +81,13 @@ DATABASES = {
         'NAME': 'myproject_development',
         'USER': 'deployer',
         'PASSWORD': 'deployer',
+    }
+}
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': 'cache:11211',
     }
 }
 
