@@ -1,0 +1,3 @@
+FROM nginx
+COPY config/nginx /etc/nginx
+COPY config/uwsgi/uwsgi_params /etc/uwsgi/uwsgi_params

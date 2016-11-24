@@ -2,7 +2,7 @@ version: '2'
 
 services:
   # Primary services
-  web:
+  app:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
@@ -13,4 +13,4 @@ services:
   # Upstream services
   db:
     volumes:
-      - ./.data/db:/var/lib/mysql
+      - .data/db:/var/lib/mysql

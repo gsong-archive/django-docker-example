@@ -1,4 +1,6 @@
 *
+!bin
+!config
 !manage.py
 !myproject
 !requirements
