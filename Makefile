@@ -23,4 +23,4 @@ prod-compose:
 	@env $$(cat .env.docker.prod | xargs) docker-compose \
 		-f docker-compose.yml \
 		-f docker-compose.override.prod.yml \
-		$(CMD)
+		$(c)
