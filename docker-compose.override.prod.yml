@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: Dockerfile.web
     volumes:
-      - ${SHARED_VOLUME}:/shared
+      - ${VAR_VOLUME}:/usr/local/var
       - ${SSL_VOLUME}:/etc/ssl
       - ${STATIC_VOLUME}:/staticfiles
     ports:
@@ -19,7 +19,7 @@ services:
     build: .
     command: bin/app-entry-point.sh
     volumes:
-      - ${SHARED_VOLUME}:/shared
+      - ${VAR_VOLUME}:/usr/local/var
       - ${STATIC_VOLUME}:/app/staticfiles
 
   db:
