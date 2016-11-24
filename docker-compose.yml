@@ -2,7 +2,9 @@ version: '2'
 
 services:
   # Primary services
-  web:
+  app:
+    env_file:
+      - .env
     depends_on:
       - db
 
@@ -13,4 +15,4 @@ services:
   db:
     image: mysql:5.7
     env_file:
-      - ./db.env
+      - .env

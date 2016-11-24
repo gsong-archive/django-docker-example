@@ -73,14 +73,13 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-# TODO: Consolidate this to .env
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'HOST': 'db',
-        'NAME': 'myproject_development',
-        'USER': 'deployer',
-        'PASSWORD': 'deployer',
+        'HOST': os.environ.get('DB_HOST', 'db'),
+        'NAME': os.environ.get('MYSQL_DATABASE', 'myproject_development'),
+        'USER': os.environ.get('MYSQL_USER', 'deployer'),
+        'PASSWORD': os.environ.get('MYSQL_PASSWORD', 'deployer'),
     }
 }
 
@@ -129,3 +128,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
