@@ -20,7 +20,7 @@ Example setup of Django development and deployment using Docker.
     Nginx web server.
 
     ```sh
-    make prod-compose c=build
+    make build
     ```
 
 1.  Build and Run Docker Containers
@@ -38,13 +38,7 @@ Example setup of Django development and deployment using Docker.
 1.  Stop and Remove Docker Containers
 
     ```sh
-    make dev-down
-    ```
-
-    or
-
-    ```sh
-    make prod-down
+    make down
     ```
 
 

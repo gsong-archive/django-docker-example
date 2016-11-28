@@ -5,18 +5,23 @@ LOCAL_TXT = requirements/local.txt
 
 
 install-dev-requirements:
-	## Install requirements for local development environment
+	# Install requirements for local development environment
 	pip install -q pip-tools
 	pip-sync requirements/*.txt
 
 
 pip-compile:
-	## Update requirements/*.txt with latest packages from requirements/*.in
+	# Update requirements/*.txt with latest packages from requirements/*.in
 	pip install -q pip-tools
 	pip-compile -U requirements/app.in
 ifneq (, $(wildcard $(LOCAL_IN)))
 	pip-compile -U $(LOCAL_IN)
 endif
+
+
+# Docker tasks
+build:
+	@$(MAKE) c=build prod-compose
 
 
 prod-compose:
@@ -34,19 +39,15 @@ open-local-browser:
 	open $(url)
 
 
-dev-up: prod-down
+down:
+	@$(MAKE) c="down" prod-compose
+
+
+dev-up: down
 	docker-compose up -d
 	@$(MAKE) open-local-browser
 
 
-dev-down:
-	docker-compose down
-
-
-prod-up: prod-down
+prod-up: down
 	@$(MAKE) c="up -d" prod-compose
 	@$(MAKE) url=http://localhost open-local-browser
-
-
-prod-down:
-	@$(MAKE) c="down" prod-compose
