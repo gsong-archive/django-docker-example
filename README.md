@@ -8,13 +8,15 @@ Example setup of Django development and deployment using Docker.
 
 ## Getting Started
 
-1.  Add two environment files, `.env` and `.env.docker.prod`. `.env` is for
-    controlling the container runtime environment. `.evn.docker.prod` is used to
-    alter the local environment for using Docker commands such as
-    `docker-compose`. See [`env.example`](env.example) and
-    [`env.docker.prod.example`](env.docker.prod.example) for more info.
+1.  Add two environment files, `.env` and `.env.docker.prod`.
 
-1.  Build Docker Images
+    * `.env` is for controlling the container runtime environment.
+    * `.evn.docker.prod` is used to alter the local environment for using Docker
+      commands such as `docker-compose`.
+
+    See [`env.example`][] and [`env.docker.prod.example`][] for more info.
+
+1.  Download and Build Docker Images
 
     This project builds two images, one for the Django app, and one for the
     Nginx web server.
@@ -22,6 +24,13 @@ Example setup of Django development and deployment using Docker.
     ```sh
     make build
     ```
+
+    The following images are also downloaded from [Docker Hub][]:
+
+    * memcached:1.4-alpine
+    * mysql:5.7
+    * nginx:latest
+    * python:3.5
 
 1.  Build and Run Docker Containers
 
@@ -43,3 +52,6 @@ Example setup of Django development and deployment using Docker.
 
 
 [Docker Engine]: https://docs.docker.com/engine/installation/
+[Docker Hub]: https://hub.docker.com
+[`env.docker.prod.example`]: env.docker.prod.example
+[`env.example`]: env.example
