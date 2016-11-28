@@ -3,7 +3,6 @@ version: '2'
 services:
   # Primary services
   app:
-    build: .
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/app

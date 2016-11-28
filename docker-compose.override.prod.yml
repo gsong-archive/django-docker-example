@@ -18,7 +18,6 @@ services:
 
   # Upstream services
   app:
-    build: .
     command: bin/app-entry-point.sh
     volumes:
       - ${VAR_VOLUME}:/usr/local/var

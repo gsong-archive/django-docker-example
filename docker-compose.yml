@@ -3,6 +3,7 @@ version: '2'
 services:
   # Primary services
   app:
+    build: .
     env_file:
       - .env
     depends_on:
