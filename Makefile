@@ -24,3 +24,29 @@ prod-compose:
 		-f docker-compose.yml \
 		-f docker-compose.override.prod.yml \
 		$(c)
+
+
+open-local-browser:
+	$(eval url ?= http://localhost:8000)
+	@until $$(curl -o /dev/null --silent --head --fail $(url)); do\
+		sleep 1;\
+	done
+	open $(url)
+
+
+dev-up: prod-down
+	docker-compose up -d
+	@$(MAKE) open-local-browser
+
+
+dev-down:
+	docker-compose down
+
+
+prod-up: prod-down
+	@$(MAKE) c="up -d" prod-compose
+	@$(MAKE) url=http://localhost open-local-browser
+
+
+prod-down:
+	@$(MAKE) c="down" prod-compose
