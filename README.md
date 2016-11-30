@@ -8,11 +8,13 @@ Example setup of Django development and deployment using Docker.
 
 ## Getting Started
 
-1.  Add two environment files, `.env` and `.env.docker.prod`.
+1.  Add Two Environment Files
 
-    * `.env` is for controlling the container runtime environment.
-    * `.evn.docker.prod` is used to alter the local environment for using Docker
-      commands such as `docker-compose`.
+    Create two environment files: `.env` and `.env.docker.prod`.
+
+    * `.env` is for injecting runtime environments into the Docker containers.
+    * `.evn.docker.prod` is used to alter the local environment when using
+      Docker commands such as `docker-compose`.
 
     See [`env.example`][] and [`env.docker.prod.example`][] for more info.
 

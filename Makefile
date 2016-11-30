@@ -4,6 +4,7 @@ LOCAL_IN = requirements/local.in
 LOCAL_TXT = requirements/local.txt
 
 
+# Python requirements
 install-dev-requirements:
 	# Install requirements for local development environment
 	pip install -q pip-tools
@@ -19,28 +20,20 @@ ifneq (, $(wildcard $(LOCAL_IN)))
 endif
 
 
-# Docker tasks
+# Docker related
 build:
-	@$(MAKE) c=build prod-compose
+	@$(MAKE) cmd=build prod-compose
 
 
 prod-compose:
 	@env $$(cat .env.docker.prod | xargs) docker-compose \
 		-f docker-compose.yml \
 		-f docker-compose.override.prod.yml \
-		$(c)
-
-
-open-local-browser:
-	$(eval url ?= http://localhost:8000)
-	@until $$(curl -o /dev/null --silent --head --fail $(url)); do\
-		sleep 1;\
-	done
-	open $(url)
+		$(cmd)
 
 
 down:
-	@$(MAKE) c="down" prod-compose
+	@$(MAKE) cmd="down" prod-compose
 
 
 dev-up: down
@@ -49,5 +42,14 @@ dev-up: down
 
 
 prod-up: down
-	@$(MAKE) c="up -d" prod-compose
+	@$(MAKE) cmd="up -d" prod-compose
 	@$(MAKE) url=http://localhost open-local-browser
+
+
+# Misc
+open-local-browser:
+	$(eval url ?= http://localhost:8000)
+	@until $$(curl -o /dev/null --silent --head --fail $(url)); do\
+		sleep 1;\
+	done
+	open $(url)
